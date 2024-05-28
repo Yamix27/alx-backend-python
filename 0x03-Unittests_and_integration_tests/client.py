@@ -2,15 +2,15 @@
 """A github org client
 """
 from typing import (
-        List,
-        Dict,
-        )
+    List,
+    Dict,
+)
 
 from utils import (
-        get_json,
-        access_nested_map,
-        memoize,
-        )
+    get_json,
+    access_nested_map,
+    memoize,
+)
 
 
 class GithubOrgClient:
@@ -25,7 +25,7 @@ class GithubOrgClient:
     @memoize
     def org(self) -> Dict:
         """Memoize org"""
-    return get_json(self.ORG_URL.format(org=self._org_name))
+        return get_json(self.ORG_URL.format(org=self._org_name))
 
     @property
     def _public_repos_url(self) -> str:
@@ -41,8 +41,8 @@ class GithubOrgClient:
         """Public repos"""
         json_payload = self.repos_payload
         public_repos = [
-                repo["name"] for repo in json_payload
-                if license is None or self.has_license(repo, license)
+            repo["name"] for repo in json_payload
+            if license is None or self.has_license(repo, license)
         ]
 
         return public_repos
